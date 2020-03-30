@@ -1,4 +1,4 @@
-from libs.credentials import ROTOR, REFLECTOR, NORMALIZE, LOWERTOUPPER
+from libs.credentials import ROTOR, REFLECTOR, NORMALIZE, LOWERTOUPPER, LETTERLEN
 from libs.rotor import rotor
 from libs.reflector import reflector
 from libs.revolutionTracker import revolutionTracker
@@ -19,16 +19,19 @@ class encription:
 		self.reflectorList = reflectorPick.selection()
 
 	def encript(self, key):
+		# change rotor states on every key pressed
+		self.revolutionStates.increase()
+		self.revolutionStates.reset()
 
 		# if a letter comes as lowercase, this refers it upper ascii code
 		self.key = self.allwaysUpper(key)
 
 		# ascii code to alphabet index
 		self.key = NORMALIZE(self.key)
-		print(self.key)
+
 		# plug board exchange
 		self.key = self.plugBoard.exchangeLetter(self.key)
-		print(self.key)
+
 		listLength = len(ROTOR)
 
 		# fist road
@@ -43,13 +46,10 @@ class encription:
 		# again exchange letter on plugboard
 		self.encripted = self.plugBoard.exchangeLetter(returnedValue)
 
-		# change rotor states on every key pressed
-		self.revolutionStates.increase()
-		self.revolutionStates.reset()
-
 	def road(self, key, step):
 		for rotor in step:
-			key = self.rotorList[rotor][key] # self.revolutionStates.startStates[rotor]
+			ofset = self.revolutionStates.ringSetting[rotor]
+			key = self.rotorList[rotor][0][((key + ofset)%LETTERLEN)]
 
 		return key
 

@@ -1,22 +1,22 @@
-from libs.credentials import STARTSTATES, ALPHABET
+from libs.credentials import RINGSETTING, RINGPOSITION
 
 class revolutionTracker:
 	def __init__(self):
 		super().__init__()
-		self.max_state = len(ALPHABET)-1
-		self.startStates = STARTSTATES
+		self.max_state = RINGPOSITION
+		self.ringSetting = RINGSETTING
 		self.state = 1
 
 	def increase(self):
-		if self.state == len(self.startStates):
+		if self.state == len(self.ringSetting):
 			return 0
-		if self.startStates[self.state-1] == self.max_state:
-			self.startStates[self.state] += 1
-			self.startStates[self.state-1] = 1
+		if self.ringSetting[self.state-1] == self.max_state[self.state-1]:
+			self.ringSetting[self.state] += 1
+			self.ringSetting[self.state-1] = 1
 			self.state += 1
 			return self.increase()
 		else:
-			self.startStates[0] += 1
+			self.ringSetting[0] += 1
 
 	def reset(self):
 		self.state = 1

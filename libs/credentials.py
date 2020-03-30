@@ -1,10 +1,14 @@
 ALPHABET = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+LETTERLEN = len(ALPHABET)-1
 
 # rotor selection could be 1, 2, 3, 4, 5
 ROTOR = [2, 5, 3]
 
 # each state could be between 1 to 26
-STARTSTATES = [10, 13, 20]
+RINGSETTING = [1, 2, 3]
+
+# each state could be between 1 to 26
+RINGPOSITION = [10, 13, 20]
 
 # reflector selection could be B, C, BT, CT
 REFLECTOR = 'B'

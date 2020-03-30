@@ -13,10 +13,17 @@ class rotor(object):
 			# VZBRGITYUPSDNHLXAWMJQOFECK
 			,5: {1: 22, 2: 26, 3: 2, 4: 18, 5: 7, 6: 9, 7: 20, 8: 25, 9: 21, 10: 16, 11: 19, 12: 4, 13: 14, 14: 8, 15: 12, 16: 24, 17: 1, 18: 23, 19: 13, 20: 10, 21: 17, 22: 15, 23: 6, 24: 5, 25: 3, 26: 11}
 		}
+		self.notch = {
+			1: 17
+			,2: 5
+			,3: 22
+			,4: 10
+			,5: 26
+		}
 
 	def selection(self):
 		requiredRotors = []
 		for index in range(len(self.arg)):
-			requiredRotors.append(self.rotors[self.arg[index]])
+			requiredRotors.append([self.rotors[self.arg[index]], self.notch[self.arg[index]]])
 
 		return requiredRotors

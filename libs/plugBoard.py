@@ -9,12 +9,13 @@ class plugBoard:
 			self.sequence = self.setSequence()
 
 	def exchangeLetter(self, letter):
-		inverse = lambda key: 0 if key == 1 else 1
 		for plugged in self.sequence:
 			if letter in plugged:
-				return plugged[inverse(plugged.index(letter))]
+				pluggedValue = plugged[1-plugged.index(letter)]
+				break
 			else:
-				return letter
+				pluggedValue = letter
+		return pluggedValue
 
 	def setSequence(self):
 		lst = list(range(1,27))
