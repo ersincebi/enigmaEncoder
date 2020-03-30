@@ -46,12 +46,13 @@ class encription:
 		# again exchange letter on plugboard
 		self.encripted = self.plugBoard.exchangeLetter(returnedValue)
 
-	def road(self, key, step):
+	def road(self, letterIndex, step):
 		for rotor in step:
-			ofset = self.revolutionStates.ringSetting[rotor]
-			key = self.rotorList[rotor][0][((key + ofset)%LETTERLEN)]
+			offset = self.revolutionStates.ringSetting[rotor]
+			letterIndex = self.rotorList[rotor][0][((letterIndex + offset)%LETTERLEN)]
+			letterIndex = (letterIndex - offset + LETTERLEN) % LETTERLEN
 
-		return key
+		return letterIndex
 
 	def result(self):
 		return self.encripted
